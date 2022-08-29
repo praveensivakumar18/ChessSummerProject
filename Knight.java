@@ -33,7 +33,7 @@ public class Knight extends Piece {
     @Override
     public int relativeValue() {
 
-        return 0;
+        return 3;
     }
 
 }

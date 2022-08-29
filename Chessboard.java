@@ -189,36 +189,12 @@ public class Chessboard {
 			return;
 		}
 		if (whitesTurnToMove) {
-			System.out.println();
-			System.out.println("------------------------------------------");
-			System.out
-					.println("___________________________________________________\n"
-							+ "Black Wins!\n"
-							+ "___________________________________________________\n");
-			System.out.println("------------------------------------------");
 
 			whiteScore += chessboard[destRow][destCol].relativeValue();
-			/*
-			 * System.out.print("Do you want to play again?");
-			 * String item = scan.nextLine();
-			 * if (item.equals("Yes") || item.equals("yes") || item.equals("y") ||
-			 * item.equals("Y")) {
-			 * isgameRunning = true;
-			 * } else {
-			 * System.out.println("Thanks for Playing");
-			 * isgameRunning = false;
-			 * }
-			 */
 
 		} else {
 			blackScore += chessboard[destRow][destCol].relativeValue();
-			System.out.println("");
-			System.out.println("------------------------------------------");
-			System.out
-					.println("___________________________________________________\n"
-							+ "White Wins!\n"
-							+ "___________________________________________________\n");
-			System.out.println("------------------------------------------");
+
 			// chessboard[destRow][destCol].relativeValue()
 
 			/*
