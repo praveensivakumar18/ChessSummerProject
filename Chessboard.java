@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Chessboard {
 
@@ -183,13 +184,54 @@ public class Chessboard {
 	 * they take an opposing piece
 	 */
 	private void updateScore() {
+		Scanner scan = new Scanner(System.in);
 		if (chessboard[destRow][destCol] == null) {
 			return;
 		}
 		if (whitesTurnToMove) {
+			System.out.println();
+			System.out.println("------------------------------------------");
+			System.out
+					.println("___________________________________________________\n"
+							+ "Black Wins!\n"
+							+ "___________________________________________________\n");
+			System.out.println("------------------------------------------");
+
 			whiteScore += chessboard[destRow][destCol].relativeValue();
+			/*
+			 * System.out.print("Do you want to play again?");
+			 * String item = scan.nextLine();
+			 * if (item.equals("Yes") || item.equals("yes") || item.equals("y") ||
+			 * item.equals("Y")) {
+			 * isgameRunning = true;
+			 * } else {
+			 * System.out.println("Thanks for Playing");
+			 * isgameRunning = false;
+			 * }
+			 */
+
 		} else {
 			blackScore += chessboard[destRow][destCol].relativeValue();
+			System.out.println("");
+			System.out.println("------------------------------------------");
+			System.out
+					.println("___________________________________________________\n"
+							+ "White Wins!\n"
+							+ "___________________________________________________\n");
+			System.out.println("------------------------------------------");
+			// chessboard[destRow][destCol].relativeValue()
+
+			/*
+			 * String item = scan.nextLine();
+			 * System.out.println("Do you want to play again?");
+			 * if (item.equals("Yes") || item.equals("yes") || item.equals("y") ||
+			 * item.equals("Y")) {
+			 * isgameRunning = true;
+			 * } else {
+			 * System.out.print("Thanks for Playing");
+			 * isgameRunning = false;
+			 * }
+			 */
 
 		}
 	}
@@ -203,7 +245,7 @@ public class Chessboard {
 	 * message and recursively calls itself.
 	 */
 	public void move() {
-
+		Scanner userInput = new Scanner(System.in);
 		System.out
 				.println("___________________________________________________\n"
 						+ "Score: White "
@@ -221,12 +263,12 @@ public class Chessboard {
 		else if (whitesTurnToMove) {
 			System.out
 					.println("___________________________________________________\n"
-							+ "White's turn to move\n"
+							+ "Black's turn to move\n"
 							+ "___________________________________________________\n");
 		} else {
 			System.out
 					.println("___________________________________________________\n"
-							+ "Black's turn to move\n"
+							+ "White's turn to move\n"
 							+ "___________________________________________________\n");
 		}
 
@@ -235,6 +277,56 @@ public class Chessboard {
 		if (move.equalsIgnoreCase("exit")) {
 			isgameRunning = false;
 			System.out.println("Thanks for playing.");
+			return;
+		}
+
+		if (move.equals("resign") || move.equals("Resign")) {
+			if (whitesTurnToMove) {
+				System.out.println();
+				System.out.println("Are you sure you want to resign?  ");
+				String userIn = userInput.next();
+				if (userIn.equals("yes")) {
+					System.out.println();
+					System.out.println("White Wins");
+					isgameRunning = false;
+				}
+			} else {
+				System.out.println();
+				System.out.println("Are you sure you want to resign?  ");
+				String userIn = userInput.next();
+				if (userIn.equals("yes")) {
+					System.out.println();
+					System.out.println("Black Wins");
+					isgameRunning = false;
+				}
+			}
+			return;
+		}
+
+		if (move.equals("draw") || move.equals("Draw")) {
+			if (whitesTurnToMove) {
+				System.out.println("___________________________________________________\n"
+						+ "White's decision\n"
+						+ "___________________________________________________\n");
+				System.out.println("Do you want to accept the draw?  ");
+				String userIn = userInput.next();
+				if (userIn.equals("yes")) {
+					System.out.println();
+					System.out.println("It's a draw!");
+					isgameRunning = false;
+				}
+			} else {
+				System.out.println("___________________________________________________\n"
+						+ "Black's decision\n"
+						+ "___________________________________________________\n");
+				System.out.println("Do you want to accept the draw?  ");
+				String userIn = userInput.next();
+				if (userIn.equals("yes")) {
+					System.out.println();
+					System.out.println("It's a draw!");
+					isgameRunning = false;
+				}
+			}
 			return;
 		}
 
